@@ -105,7 +105,8 @@ void AThirdGuyNoviceCharacter::LookUpAtRate(float Rate)
 void AThirdGuyNoviceCharacter::Shoot()
 {
 	FTransform SpawnTransform = GetActorTransform();
-	SpawnTransform.TransformPosition(FVector(0.f, 0.f, 100.f));
+	
+	SpawnTransform.SetLocation(FollowCamera->GetComponentRotation().Vector() * 200.f + GetActorLocation());
 
 	FActorSpawnParameters SpawnParams;
 
