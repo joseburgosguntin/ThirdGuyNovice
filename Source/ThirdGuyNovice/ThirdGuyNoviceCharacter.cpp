@@ -102,8 +102,19 @@ void AThirdGuyNoviceCharacter::LookUpAtRate(float Rate)
 	AddControllerPitchInput(Rate * TurnRateGamepad * GetWorld()->GetDeltaSeconds());
 }
 
+void AThirdGuyNoviceCharacter::ServerShoot_Implementation()
+{
+	Shoot();
+}
+
 void AThirdGuyNoviceCharacter::Shoot()
 {
+	if (Role < ROLE_Authority) 
+	{
+		ServerShoot();
+		return;
+	}
+
 	FTransform SpawnTransform = GetActorTransform();
 	
 	SpawnTransform.SetLocation(FollowCamera->GetComponentRotation().Vector() * 200.f + GetActorLocation());

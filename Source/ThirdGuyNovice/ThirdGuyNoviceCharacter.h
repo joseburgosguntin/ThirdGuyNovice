@@ -30,6 +30,9 @@ public:
 
 protected:
 
+	UFUNCTION(Server, Reliable)
+	void ServerShoot();
+
 	void Shoot();
 
 	/** Called for forwards/backward input */
